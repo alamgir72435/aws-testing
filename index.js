@@ -20,6 +20,41 @@ const { checkNotAuthenticated } = require("./config/auth");
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 
+
+// multer
+const multer = require("multer");
+const upload = multer({
+  storage: multer.memoryStorage(),
+});
+
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json({ extended: false }));
+app.use(
+  cors({
+    origin: true,
+  })
+);
+
+
+const users = [
+  {
+    id: 1,
+    email: "b-logicagrovet@gmail.com",
+    password: "blogicagro0099",
+    name: "B-Logic Admin",
+  },
+  { id: 2, email: "a", password: "7243", name: "admin" },
+];
+
+const initializePassport = require("./passport-config");
+initializePassport(
+  passport,
+  (email) => users.find((user) => user.email === email),
+  (id) => users.find((user) => user.id === id)
+);
+
+
+
 app.get("/", (req, res) => {
   res.send("<h1>Hello world updated 1</h1>");
 });
