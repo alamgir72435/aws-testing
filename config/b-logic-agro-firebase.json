@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "b-logic-agro",
+  "private_key_id": "b8107ff35b6a61e08967957b80afb3b903849a30",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDKv45r/XOvQI6a\n2LgQaIhU+zr4zgKuTEZnHlc9ORG6D4EndTcxOVXt8fYJuqK60QLInfIg4Av369j7\n44O/Gbj7wIMjjcdI0kqGi5qWrMobMd4yWqHwduqyY8CqQ2+DrNqyB4eun2DaUQtb\nfew/cQlDYkSWtvVBeRzW08NGKZH1DT7h8bCTtDjxkbMlcIB05qRLvbfwcEQmApmY\nJeBfCYT3DHL/u9dqB9RbM+VI/V7Awhf8xuFaPRWP8mE7UKJVrq8qh+jS0N7r6Sql\n7QwpsDjDhN7M/5vtGrdhp/IQWSAdF96HNOvdZXTNMNvQC6b7CpEoOHsw7w2Q2qeJ\ndJX7CWxNAgMBAAECggEAK3TZcv4VMKgWqMvwz9uH9ScQIcoOOwuwP2P6cO3thcLS\n/QEbvlo6t9CX2sf9HyuzfAqWnkNHbXFIxdyjHW/G/Xbq5ND7uPkR7jq3/Lm2bBPJ\nO2O/uAnVDj1hS10+5qtDCMuiYmRY3xJl68tWutZglOfYKbG3abwq2UT0YvKADVTS\ns9w7rv8SpwinYG5C2SGX2CzCaWEePMN5kO0S+0i+6ZH7yryzGHuRxtm7FmTr0uVu\nnM5NdJNinKG4qKiwgzrExZOkfNtkXHpYnVfQxnYpQX2MVKCX+vXRSkxwmHut+FEn\nnag+JJtWrCrcKLVlMpikymifti+sGZ5KV5yWVU1FoQKBgQDuo+AZ0D8Ce6KFyUMI\n6f8xIhLefl7/G3WhQRrsMkPyrA6m3w+auW/y8iw5ED1dzMpOe/amrlIJGQTGZtan\ne1ROGUHNX4vLxxaOLRJC+LDN//X/liI2W+iH6UU9ZHoHSn8XcY1/1l7eR97t0xDe\nmqAY/PtdzeSvnS1bb23zSu6NdQKBgQDZf0b6FUEGKeoHx5Aqe2xl9EbXODs6w8WW\ncuDSA/1/vA7r/TxAGDAISzSUQQ9sGS2A9xeXeRxvCm5ya1UzHRFj0CZp4Sp7MKff\nfUZ9oJ/HpHh6LJ/AFA1GtFS6vdX59/RuGP3dVQSYribJRgzFpKIaEx7AIqoZjMYs\nqoeOjURQeQKBgQCvYibgMcktJPoTww+OLJMNZBJkDJH6gQ7ZXUTRFDwVzFfUUhlg\nyCo7bboMkh/XoRuJxNdINtM5tnZo7cmSOzSBVVSkADV4pS+xe/Rw3d7q9tOvbIJm\nWvOxd0IY1ZBNbXWsIBszObRtPnrbZISAZTmGQ97lWN1aJ3TfPyyaYpahxQKBgEju\nfQZvChbfBzMEoDsemAK4HukcWgAilacVbn3+CItErFxF1mZHthOR5FeyWVGOP8v3\nD1ojqn0xqkeD5lX1cVde/QKUFoKoliJDB9gofGudoyiUvhzSnIERBzh3X8EqfDRO\n/RGy6I+qFid37eB4jELiFnWnKhLXObzQkhQjGr1BAoGAZ9ep7g8O3bnPVEqegPvL\n4tGFBcRVb0VuPqCSXfk716DYTklu8D+YGpRfzI/xFLR7S7dYA1RnIByJuF0M+JH+\nPuDrIayoVx9dyK8WuCUZoeklYBoZHX8txW8xQb81Hj/2a2AhKdXgz8FyTZ1y1pvK\nb+vJx4ahF7ouvtIeQNjQJjo=\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-z67sw@b-logic-agro.iam.gserviceaccount.com",
+  "client_id": "112789458151044038713",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-z67sw%40b-logic-agro.iam.gserviceaccount.com"
+}
