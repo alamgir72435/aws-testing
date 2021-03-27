@@ -1,0 +1,137 @@
+html {
+  scroll-behavior: smooth;
+}
+.header-navbar div nav {
+  display: flex;
+  padding: 10px 10px;
+  justify-content: space-between;
+  align-items: center;
+}
+.header-navbar div nav a img {
+  width: 110px;
+  height: auto;
+}
+.header-navbar div nav ul li {
+  display: inline-block;
+  padding: 0px 20px;
+}
+.header-navbar div nav ul li a {
+  color: #024d91;
+  text-transform: uppercase;
+}
+.header-navbar div nav ul li a:hover {
+  color: #024d91;
+  transition: 0.5s;
+}
+.header-navbar div nav a.ctx {
+  color: #fff;
+  text-transform: uppercase;
+  background: #024d91;
+  padding: 5px 20px;
+  border-radius: 20px;
+}
+
+/* SideDrawer Css Start  */
+
+.mobile-menu-items {
+  width: 0;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 0.95;
+  background: #36d1dc; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to top,
+    #5b86e5,
+    #36d1dc
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to top,
+    #5b86e5,
+    #36d1dc
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  z-index: 99;
+  overflow-x: hidden;
+  transition: all 0.5s ease;
+}
+.side-drawer-items a {
+  text-decoration: none;
+  display: block;
+  color: #fff;
+  font-size: 20px;
+  text-transform: uppercase;
+  padding: 20px 0px;
+  transition: all 0.2s ease;
+  text-align: center;
+  padding-right: 40px;
+}
+.side-drawer-items a:hover {
+  color: #242d2c;
+}
+.hambargur-icon {
+  color: #024d91;
+  font-size: 25px;
+  cursor: pointer;
+  display: none;
+  padding-right: 30px;
+}
+.side-drawer-items {
+  position: relative;
+  top: 20%;
+  left: 5%;
+}
+.closeBtn {
+  position: absolute;
+  top: 5%;
+  right: 20px;
+  font-size: 60px;
+  color: #3f51b5;
+  cursor: pointer;
+}
+
+.appointment-img {
+  margin-top: -100px;
+}
+.contactUsTitle {
+  display: none;
+}
+@media only screen and (max-width: 992px) {
+  .contactUsTitle {
+    display: block;
+  }
+  .appointment-img {
+    display: none;
+  }
+  .header-navbar div nav ul li {
+    display: inline-block;
+    padding: 0px 6px;
+  }
+  .header-navbar div nav a img {
+    width: 85px;
+    height: auto;
+  }
+  .header-navbar div nav a.ctx {
+    color: #004c8d;
+    text-transform: uppercase;
+    background: #07beca;
+    padding: 2px 15px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+}
+@media only screen and (max-width: 768px) {
+  a.ctx {
+    display: none;
+  }
+
+  .menu-wrapper {
+    display: none;
+  }
+  .hambargur-icon {
+    display: block;
+  }
+}
+@media only screen and (max-width: 576px) {
+}

@@ -1,0 +1,28 @@
+/*#######################################
+	Responsive For RTL
+##########################################*/
+
+@media only screen and (max-width:1199px) {
+	.header-navbar .navbar-default .navbar-nav>li>a {
+		margin-right: 0;
+		margin-left: 22px;
+	}
+}
+
+@media only screen and (max-width:991px) {
+
+}
+
+@media only screen and (max-width:767px) {
+	.my-info-box {
+		padding-right: 0;
+	}
+	.header-navbar .navbar-default .navbar-nav>li>a {
+		margin-left: 0;
+	}
+	.header-navbar .navbar-nav {
+		text-align: right;
+		margin-right: 0;
+	}
+
+}

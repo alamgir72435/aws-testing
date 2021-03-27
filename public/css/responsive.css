@@ -1,0 +1,593 @@
+@media only screen and (max-width: 1920px) {
+  .about-area {
+    padding: 100px 0 0;
+  }
+  .section-style::before,
+  .section-style::after {
+    bottom: -50px;
+    height: 15%;
+  }
+  .section-style::before {
+    -ms-transform: skewY(5deg);
+    -webkit-transform: skewY(5deg);
+    transform: skewY(5deg);
+  }
+  .section-style::after {
+    -ms-transform: skewY(-5deg);
+    -webkit-transform: skewY(-5deg);
+    transform: skewY(-5deg);
+  }
+  .about-area {
+    padding: 110px 0 0;
+  }
+}
+
+@media only screen and (max-width: 1366px) {
+  .about-area {
+    padding: 110px 0 0;
+  }
+  .section-style::before,
+  .section-style::after {
+    bottom: -65px;
+    height: 20%;
+  }
+  .section-style::before {
+    -ms-transform: skewY(10deg);
+    -webkit-transform: skewY(10deg);
+    transform: skewY(10deg);
+  }
+  .section-style::after {
+    -ms-transform: skewY(-10deg);
+    -webkit-transform: skewY(-10deg);
+    transform: skewY(-10deg);
+  }
+  .about-area {
+    padding: 110px 0 0;
+  }
+}
+
+@media only screen and (max-width: 1199px) {
+  .center1199 {
+    text-align: center;
+    float: none;
+  }
+  .herader-topbar-col.tobar-rightside {
+  }
+  .topbar-arrow {
+    display: none;
+  }
+  .header-navbar .navbar-default .navbar-nav > li > a {
+    margin-right: 22px;
+  }
+  .header-navbar .navbar-brand img {
+    width: 195px;
+    height: auto;
+  }
+  .about-col .image-hover-box {
+    width: 80%;
+    margin: 0 auto !important;
+  }
+  .appointment-img {
+    width: 60%;
+    margin: 0 auto;
+  }
+  .footer-post-col ul li {
+    margin-bottom: 30px;
+  }
+  .time-chart {
+    padding: 20px 10px;
+  }
+  .health-tips {
+    padding: 20px 10px;
+  }
+  .doctors-details-img {
+    width: 60%;
+    margin: auto;
+    margin-bottom: 30px;
+  }
+  .doctors-details-col {
+    text-align: center;
+  }
+  .about-col img {
+    width: 80%;
+    margin: 0 auto;
+    display: block;
+  }
+  .section-style::before,
+  .section-style::after {
+    bottom: -60px;
+  }
+  .about-area {
+    padding: 115px 0 0;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+}
+
+@media only screen and (max-width: 991px) {
+  .center991 {
+    text-align: center;
+  }
+  .header-topbar {
+    padding: 10px 0 10px;
+  }
+  .navbar-default .navbar-nav > .open > a,
+  .navbar-default .navbar-nav > .open > a:focus,
+  .navbar-default
+    .navbar-nav
+    > .open
+    > a:hover
+    .header-navbar
+    .navbar-default
+    .navbar-nav
+    > li
+    > a {
+    color: #f6f6f6;
+  }
+  .rtl-format .header-navbar .navbar-default .navbar-nav > li > a {
+    margin-right: 20px;
+    margin-left: 0;
+  }
+  .navbar-header {
+    float: left;
+    float: none;
+    margin: 0 auto;
+    text-align: center;
+    width: 220px;
+  }
+  .navbar-nav {
+    width: 100%;
+    text-align: center;
+  }
+  .navbar-right {
+    float: none !important;
+  }
+  .separator-area:before {
+    width: 100%;
+    height: 100%;
+    margin-right: 0;
+    -ms-transform: skewX(0deg);
+    -webkit-transform: skewX(0deg);
+    transform: skewX(0deg);
+  }
+  .separator-col {
+    text-align: center;
+  }
+  .video-img {
+    width: 90%;
+    margin: auto;
+    display: block;
+  }
+  .video-img img {
+    width: 90%;
+    margin: auto;
+    display: block;
+  }
+  .hospital-video h3 {
+    text-align: center;
+  }
+  .video-overlay {
+    width: 90%;
+    height: 100%;
+    left: auto;
+    right: 0px;
+  }
+  .ml0-991 {
+    margin-left: 0 !important;
+  }
+  .notice-box p {
+    margin-bottom: 20px;
+  }
+  .doctor-area .owl-carousel .owl-nav .owl-next {
+    right: 0;
+  }
+  .doctor-area .owl-carousel .owl-nav .owl-prev {
+    left: 0;
+  }
+  .carousel-caption {
+    padding: 0 80px;
+  }
+  .main-herader-transparent
+    .header-navbar
+    .navbar-default
+    .navbar-nav
+    > li
+    > a {
+    padding: 10px 0;
+  }
+  .info-box {
+    padding: 30px 15px;
+  }
+  .time-chart {
+    padding: 20px 20px;
+  }
+  .health-tips {
+    padding: 20px 20px;
+  }
+  .notice-area:before {
+    width: 32%;
+  }
+  .notice-col {
+    text-align: center;
+  }
+  .header-middle .main-logo img {
+    margin: 0 auto;
+    display: block;
+  }
+  .main-logo {
+    margin-bottom: 20px;
+  }
+  .appointment-box {
+    margin-top: 30px;
+  }
+  .header-navbar .navbar-default .navbar-nav > li > a {
+    margin: 0 10px;
+  }
+  .navbar-nav {
+    width: 100%;
+    text-align: center;
+  }
+  .navbar-nav > li {
+    float: none;
+    display: inline-block;
+  }
+  .my-search-box {
+    width: 60%;
+    margin: 0 auto;
+    margin-top: 0;
+    margin-bottom: 25px;
+  }
+  .banner-col {
+    text-align: center;
+  }
+  .banner-col .owl-theme .owl-dots,
+  .banner-col .owl-theme .owl-nav {
+    text-align: center;
+  }
+  .banner-col img {
+    margin-top: 30px;
+  }
+  .banner-col .banner-carousel {
+    margin-top: 0;
+  }
+  .section-style:before,
+  .section-style:after {
+    bottom: -45px;
+    height: 90px;
+  }
+  .about-col img {
+    width: 100%;
+  }
+  .carousel-caption h3 {
+    font-size: 40px;
+  }
+  .about-two-img {
+    margin-top: 30px;
+  }
+  .welcome-col h1 {
+    font-size: 50px;
+  }
+  .about-area {
+    padding: 110px 0 0;
+  }
+}
+
+@media only screen and (max-width: 840px) {
+  .header-navbar .dropdown-menu {
+    min-width: 190px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .header-navbar div nav {
+    padding: 0px 0px !important;
+  }
+  .center767 {
+    float: none;
+    text-align: center;
+  }
+  .header-topbar .topbar-arrow {
+    display: none;
+  }
+  .header-navbar .navbar-brand {
+    padding: 0 15px;
+    margin-top: 18px;
+  }
+  .header-navbar .navbar-toggle {
+    border-radius: 0;
+    margin: 0;
+  }
+  .header-navbar .navbar-default .navbar-nav > li > a {
+    margin-left: 0;
+    padding: 12px 0;
+  }
+  .navbar-nav {
+    max-height: 350px;
+  }
+  .navbar-default .navbar-toggle:focus,
+  .navbar-default .navbar-toggle:hover {
+    background-color: transparent;
+  }
+  .main-nav.top-nav-collapse .icon-bar {
+    background: #333333;
+  }
+  .navbar-collapse {
+    margin-top: 20px;
+  }
+  .container > .navbar-collapse {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .main-nav .navbar-right {
+    background: #f1f1f1;
+    margin: 0 -15px;
+    padding: 10px 0;
+  }
+  .main-nav .navbar-nav > li {
+    width: 100%;
+    text-align: center;
+  }
+  .main-nav .navbar-nav > li > a {
+    margin-top: 0;
+    margin-left: 0;
+    color: #666666;
+  }
+  .navbar-header {
+    float: right;
+    width: 45px !important;
+  }
+  .header-navbar .navbar-nav {
+    text-align: left;
+  }
+  .main-slider-area .carousel-control .glyphicon-chevron-right {
+    right: 10px;
+  }
+  .main-herader-transparent .header-navbar .navbar-brand {
+    height: 0;
+  }
+  .main-herader-transparent .header-navbar .navbar-toggle {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .main-herader-transparent
+    .header-navbar
+    .navbar-default
+    .navbar-nav
+    > li
+    > a {
+    padding: 10px 15px;
+    color: #111111;
+  }
+  .main-herader-transparent .navbar-default .navbar-collapse {
+    background: rgba(255, 255, 255, 0.9);
+  }
+  .appointment-box a {
+    width: 50%;
+    margin: 0 auto;
+  }
+  .my-info-box {
+    padding-left: 0;
+    text-align: center;
+  }
+  .my-info-box i {
+    position: relative;
+    margin: 0 auto;
+    display: block;
+  }
+  .my-info-box h4 {
+    padding-top: 15px;
+  }
+  .navbar-toggle {
+    float: left;
+    margin-left: 0;
+  }
+  .header-navbar .navbar-toggle {
+  }
+  .my-search-box {
+    margin: 0;
+    width: 100%;
+    margin-top: 5px;
+  }
+  .header-navbar {
+    padding: 20px 0;
+  }
+  .navbar-collapse.in {
+    /*overflow-y: visible;*/
+  }
+  .navbar-nav {
+    margin-left: 0;
+  }
+  .navbar-collapse {
+    margin-top: 20px;
+  }
+  .navbar-nav > li {
+    display: block;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    color: #f6f6f6;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus,
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover {
+    color: #07beca;
+  }
+  .about-area {
+    padding: 100px 0 0;
+  }
+  .carousel-caption h3 {
+    font-size: 32px;
+  }
+  .carousel-fade .carousel-inner .item {
+    height: 70vh;
+  }
+  .carousel-caption {
+    top: 48%;
+  }
+  .herader-topbar-col.tobar-rightside {
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .header-navbar div nav {
+    padding: 0px 0px !important;
+  }
+  .fw600 {
+    width: 100%;
+  }
+  .text-center600 {
+    float: none;
+    text-align: center;
+  }
+  .main-nav .navbar-brand {
+    width: 180px;
+    height: auto;
+  }
+  .our-doctor .social-group li a {
+    margin: 0;
+    width: 30px;
+    height: 30px;
+    font-size: 12px;
+    line-height: 30px;
+  }
+  .about-area {
+    padding: 95px 0 0;
+  }
+  .banner-col h2 {
+    font-size: 30px;
+  }
+  .banner-col h4 {
+    font-size: 18px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .header-navbar div nav {
+    padding: 0px 0px !important;
+  }
+  .full-wd480 {
+    width: 100% !important;
+  }
+  .main-logo {
+    margin-bottom: 0;
+  }
+  .my-info-box {
+    margin-top: 30px;
+  }
+  .about-area {
+    padding: 90px 0 0;
+  }
+  .carousel-fade .carousel-inner .item {
+    text-align: center !important;
+  }
+  .carousel-caption {
+    padding: 0 50px;
+  }
+  .carousel-caption h3 {
+    font-size: 22px;
+  }
+  .carousel-caption p {
+    font-size: 15px;
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  .header-navbar div nav {
+    padding: 0px 0px !important;
+  }
+  .main-nav .navbar-brand {
+    width: 150px;
+    height: auto;
+  }
+  .navbar-toggle {
+    margin-bottom: 0;
+  }
+  .header-navbar .navbar-brand img {
+    width: 170px;
+  }
+  .herader-topbar-col.tobar-rightside p a span {
+    background: transparent;
+  }
+  .herader-topbar-col.tobar-rightside span:last-child {
+    margin-left: 0;
+  }
+  .carousel-caption h3 {
+    font-size: 20px;
+  }
+  .carousel-caption p {
+    font-size: 12px;
+    margin-top: 30px;
+  }
+  .carousel-caption {
+    padding: 0 50px;
+  }
+  .welcome-col h1 {
+    font-size: 40px;
+  }
+  .tab .nav-tabs li a {
+    font-size: 16px;
+    padding: 0 10px 0;
+  }
+  .doctors-details-img {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+  .about-area {
+    padding: 85px 0 0;
+  }
+  .carousel-caption {
+    top: 43%;
+  }
+  .carousel-caption p {
+    letter-spacing: 0;
+  }
+  .banner-col h2 {
+    font-size: 24px;
+  }
+  .banner-col h4 {
+    font-size: 14px;
+  }
+  .banner-col p {
+    font-weight: normal;
+  }
+  .section-title-col h2 {
+    font-size: 24px;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .header-navbar div nav {
+    padding: 0px 0px !important;
+  }
+  /*.banner-col h2 {
+		font-size: 40px;
+	}*/
+  .welcome-col .cd-headline {
+    font-size: 18px;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .header-navbar div nav {
+    padding: 0px 0px !important;
+  }
+  .header-navbar .navbar-brand {
+    margin-top: 20px;
+  }
+  .header-navbar .navbar-brand img {
+    width: 155px;
+  }
+  .tab .nav-tabs li a {
+    font-size: 14px;
+    padding: 0 5px 0;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .welcome-col h1 {
+    margin-top: 120px;
+  }
+  .carousel-caption {
+    top: 40%;
+  }
+}
