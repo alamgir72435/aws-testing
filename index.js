@@ -88,9 +88,64 @@ app.use("/backend", require("./routes/admin"));
 app.use("/", require("./routes"));
 
 //==
+//==
+
+// uploads
+app.post("/upload", upload.single("Img"), (req, res) => {
+  // multer config
+  // const multer = require("multer");
+  // const upload = multer({
+  //   storage: multer.memoryStorage(),
+  // });
+
+  // connect firebase admin sdk
+  // then initialize bucket
+  // const bucket = firebaseAdmin.storage().bucket();
+
+  if (!req.file) {
+    return res.json({ message: "Select a valid File" });
+  } else {
+    let filename =
+      moment.now() + "." + String(req.file.originalname).split(".")[1];
+
+    const uploadableFile = bucket.file(filename);
+
+    const fileWriter = uploadableFile.createWriteStream({
+      metadata: {
+        contentType: req.file.mimetype,
+      },
+    });
+
+    fileWriter.on("error", (err) => {
+      res.json({ error: err });
+    });
+
+    // If all is good and done
+    fileWriter.on("finish", () => {
+      // Assemble the file public URL
+      const publicUrl = `https://firebasestorage.googleapis.com/v0/b/${
+        bucket.name
+      }/o/${encodeURI(uploadableFile.name)}?alt=media`;
+      // Return the file name and its public URL
+      // for you to store in your own database
+      res.status(200).json({
+        fileName: filename,
+        fileLocation: publicUrl,
+      });
+    });
+
+    fileWriter.end(req.file.buffer);
+    // When there is no more data to be consumed from the stream the end event gets emitted
+  }
+});
+
+
+//==
+
+
 
 app.get("/", (req, res) => {
-  res.send("<h1>Hello world updated 1/2</h1>");
+  res.send("<h1>Hello world updated 1/2/+3/+4</h1>");
 });
 
 const PORT = process.env.PORT || 3000;
