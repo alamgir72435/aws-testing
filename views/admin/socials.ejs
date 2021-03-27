@@ -1,0 +1,140 @@
+<%- include('./../partials/adminHeader') %>
+
+<div class="banner-list container">
+  <div class="card">
+    <div class="row">
+      <div class="col-md-12">
+        <span class="msg"></span>
+      </div>
+    </div>
+    <div class="card-header flex-between-center">
+      <h3>Social Networks</h3>
+    </div>
+    <div class="card-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Serial</th>
+            <th>Network Name</th>
+            <th>Link</th>
+            <th>action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>01</td>
+            <td>Facebook</td>
+            <td>
+              <input class="w-100-p" id="facebookValue" value="" />
+            </td>
+            <td>
+              <button id="fb" class="customBtn">save</button>
+            </td>
+          </tr>
+          <tr>
+            <td>02</td>
+            <td>Twitter</td>
+            <td>
+              <input class="w-100-p" value="" id="twitterValue" />
+            </td>
+            <td>
+              <button id="twitter" class="customBtn">save</button>
+            </td>
+          </tr>
+          <tr>
+            <td>03</td>
+            <td>Linkdin</td>
+            <td>
+              <input class="w-100-p" value="" id="linkdinValue" />
+            </td>
+            <td>
+              <button id="linkdin" class="customBtn">save</button>
+            </td>
+          </tr>
+          <tr>
+            <td>04</td>
+            <td>Youtube</td>
+            <td>
+              <input class="w-100-p" value="" id="youtubeValue" />
+            </td>
+            <td>
+              <button id="youtube" class="customBtn">save</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.querySelector("#fb").addEventListener("click", () => {
+    var facebook = document.querySelector("#facebookValue").value;
+    $.post("/backend/social/facebook", { facebook }, (res) => {
+      if (res.success == true) {
+        document.querySelector(".msg").innerHTML =
+          '<div class="alert alert-success">facebook link updated !</div>';
+      } else {
+        document.querySelector(".msg").innerHTML =
+          '<div class="alert alert-danger">facebook not updated !</div>';
+      }
+    });
+  });
+
+  document.querySelector("#twitter").addEventListener("click", () => {
+    var twitter = document.querySelector("#twitterValue").value;
+    $.post("/backend/social/twitter", { twitter }, (res) => {
+      if (res.success == true) {
+        document.querySelector(".msg").innerHTML =
+          '<div class="alert alert-success">twitter link updated !</div>';
+      } else {
+        document.querySelector(".msg").innerHTML =
+          '<div class="alert alert-danger">twitter not updated !</div>';
+      }
+    });
+  });
+  document.querySelector("#linkdin").addEventListener("click", () => {
+    var linkdin = document.querySelector("#linkdinValue").value;
+    $.post("/backend/social/linkdin", { linkdin }, (res) => {
+      if (res.success == true) {
+        document.querySelector(".msg").innerHTML =
+          '<div class="alert alert-success">linkdin link updated !</div>';
+      } else {
+        document.querySelector(".msg").innerHTML =
+          '<div class="alert alert-danger">linkdin not updated !</div>';
+      }
+    });
+  });
+
+  document.querySelector("#youtube").addEventListener("click", () => {
+    var youtube = document.querySelector("#youtubeValue").value;
+    $.post("/backend/social/youtube", { youtube }, (res) => {
+      if (res.success == true) {
+        document.querySelector(".msg").innerHTML =
+          '<div class="alert alert-success">youtube link updated !</div>';
+      } else {
+        document.querySelector(".msg").innerHTML =
+          '<div class="alert alert-danger">youtube not updated !</div>';
+      }
+    });
+  });
+
+  loadData();
+  function loadData() {
+    $.get("/backend/product/social", (sites) => {
+      if (sites.length > 0) {
+        const facebook = sites.find((x) => x.id == "facebook");
+        const twitter = sites.find((x) => x.id == "twitter");
+        const linkdin = sites.find((x) => x.id == "linkdin");
+        const youtube = sites.find((x) => x.id == "youtube");
+
+        document.querySelector("#facebookValue").value = facebook.link;
+        document.querySelector("#twitterValue").value = twitter.link;
+        document.querySelector("#linkdinValue").value = linkdin.link;
+        document.querySelector("#youtubeValue").value = youtube.link;
+      }
+    });
+  }
+</script>
+
+<%- include('./../partials/adminFooter') %>

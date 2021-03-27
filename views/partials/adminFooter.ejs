@@ -1,0 +1,84 @@
+  
+  <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+  <script>
+
+    // loader 
+    document.addEventListener('DOMContentLoaded', ()=> {
+      document.querySelector('.loader').classList.add('hide');
+    })
+   
+  document.addEventListener('DOMContentLoaded', ()=> {
+    if(document.querySelector('textarea[name="editor"]') !== null){ 
+      CKEDITOR.replace( 'editor' );
+    }
+  })
+  
+  // add button toggleer
+  const toggleButton = document.querySelector(".toggleButton");
+  if(toggleButton !==null){
+    toggleButton.addEventListener("click", (e) => {
+      const addSection = document.querySelector(".add-section");
+      if (addSection.classList.contains("hide")) {
+        addSection.classList.remove("hide");
+        var newTitle = String(e.target.textContent).replace("+", "-");
+        e.target.textContent = newTitle;
+      } else {
+        addSection.classList.add("hide");
+        var newTitle = String(e.target.textContent).replace("-", "+");
+        e.target.textContent = newTitle;
+      }
+    })
+  }
+
+
+
+  // Image Upload 
+  const handleImageUpload = (event) => {
+    return new Promise((resolve, reject) => {
+      const files = event.target.files;
+      const formData = new FormData();
+      formData.append("Img", files[0]);
+      fetch("/upload", {
+        method: "POST",
+        body: formData,
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          resolve(data);
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
+  };
+
+  const post = (url, data) => {
+    return new Promise((resolve, reject)=> {
+      fetch(url, {
+        method: "POST",
+        body: {name:"saif"},
+        // headers: {
+        //   "Content-Type": 'application/json'
+        // },
+      }).then(res => res.json())
+      .then(data => {
+        resolve(data)
+      }).catch(e => {
+        reject(e)
+      })
+    })
+  }
+
+
+  // custom file choose
+  (()=> {
+    const actualBtn = document.getElementById('actual-btn');
+    const fileChosen = document.getElementById('file-chosen');
+    actualBtn.addEventListener('change', function(){
+      fileChosen.textContent = this.files[0].name
+    })
+  })()
+  
+  </script>
+  </body>
+</html>

@@ -1,0 +1,185 @@
+<%- include('./../partials/adminHeader') %>
+
+<div class="container add-section hide">
+  <div class="jumbotron">
+    <h3>Add Team Member</h3>
+    <hr />
+    <div class="row">
+      <div class="col-md-12">
+        <span class="msg"></span>
+      </div>
+      <div class="col-md-8 mx-auto">
+        <form>
+          <div class="form-group">
+            <label for="memberName">Member Name</label>
+            <input
+              id="memberName"
+              placeholder="Member Name"
+              type="text"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group">
+            <label for="Designation">Designation</label>
+            <input
+              id="position"
+              placeholder="Eg. Manager"
+              type="text"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group">
+            <label for="Photo">Photo</label>
+            <input type="hidden" name="photo" id="photo" />
+            <input id="bannerImg" type="file" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="Fb Link">Fb Link</label>
+            <input id="FbLink" class="form-control" />
+          </div>
+
+          <div class="form-group">
+            <label for="Twitter Link">Twitter Link</label>
+            <input id="TwitterLink" class="form-control" />
+          </div>
+
+          <div class="form-group">
+            <label for="Linkdin Link">Linkdin Link</label>
+            <input id="LinkdinLink" class="form-control" />
+          </div>
+
+          <button class="btn customBtn Add">Add new Member</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="banner-list container">
+  <div class="card">
+    <div class="card-header flex-between-center">
+      <h3>Team Member List</h3>
+      <button class="customBtn toggleButton">+ Add Team member</button>
+    </div>
+    <div class="card-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Serial</th>
+            <th>Member Name</th>
+            <th>Designation</th>
+            <th>Facebook Link</th>
+            <th>Twitter Link</th>
+            <th>Linkdin Link</th>
+            <th>action</th>
+          </tr>
+        </thead>
+        <tbody class="rows"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+  document
+    .querySelector("#bannerImg")
+    .addEventListener("change", async (event) => {
+      document.querySelector(".customBtn").setAttribute("disabled", true);
+      const data = await handleImageUpload(event);
+      document.querySelector("#photo").value = data.fileLocation;
+      document.querySelector(".customBtn").removeAttribute("disabled", true);
+    });
+
+  document.querySelector(".Add").addEventListener("click", (e) => {
+    e.preventDefault();
+    var memberName = document.querySelector("#memberName");
+    var position = document.querySelector("#position");
+    var photo = document.querySelector("#photo");
+    var FbLink = document.querySelector("#FbLink");
+    var TwitterLink = document.querySelector("#TwitterLink");
+    var LinkdinLink = document.querySelector("#LinkdinLink");
+
+    if (memberName.value == "" || photo.value == "" || position.value == "") {
+      document.querySelector(".msg").innerHTML =
+        '<div class="alert alert-danger">Please fill out name and photo</div>';
+    } else {
+      $.post(
+        "/backend/team/add",
+        {
+          memberName: memberName.value,
+          position: position.value,
+          photo: photo.value,
+          FbLink: FbLink.value,
+          TwitterLink: TwitterLink.value,
+          LinkdinLink: LinkdinLink.value,
+        },
+        (res) => {
+          if (res.success == true) {
+            memberName.value = "";
+            position.value = "";
+            photo.value = "";
+            FbLink.value = "";
+            TwitterLink.value = "";
+            LinkdinLink.value = "";
+            loadData();
+          } else {
+            document.querySelector(".msg").innerHTML =
+              '<div class="alert alert-danger">Something went wrong !</div>';
+          }
+        }
+      );
+    }
+  });
+  loadData();
+
+  function loadData() {
+    $.get("/backend/team/list", (members) => {
+      var rows = document.querySelector(".rows");
+      if (members.length == 0) {
+        rows.innerHTML = "";
+        rows.innerHTML += `
+            <tr>
+              <td colspan="6">
+                <h2 class="text-center">No data Found ! please add</h2>
+              </td>
+            </tr>`;
+        return;
+      }
+
+      rows.innerHTML = "";
+      var count = 0;
+      for (member of members) {
+        count++;
+        rows.innerHTML += `
+            <tr>
+              <td>${count}</td>
+              <td>${member.memberName}</td>
+              <td>${member.position}</td>
+              <td>${member.FbLink}</td>
+              <td>${member.TwitterLink}</td>
+              <td>${member.LinkdinLink}</td>
+              <td>
+                <img src="${member.photo}" width="50px" height="50px" />
+              </td>
+              <td>
+                <button onClick="del('${member.id}')" class="customBtn">Delete</button>
+              </td>
+            </tr>`;
+      }
+    });
+  }
+
+  function del(id) {
+    document.querySelector(".loader").classList.remove("hide");
+    $.post("/backend/team/del", { id }, (res) => {
+      document.querySelector(".loader").classList.add("hide");
+      if (res.success == true) {
+        loadData();
+      } else {
+        console.log("data not deleted");
+      }
+    });
+  }
+</script>
+
+<%- include('./../partials/adminFooter') %>

@@ -1,0 +1,163 @@
+<%- include('./../partials/adminHeader') %>
+
+<div class="container add-section hide">
+  <div class="jumbotron">
+    <h3>Add Product</h3>
+    <hr />
+    <div class="row">
+      <div class="col-md-8 mx-auto">
+        <form>
+          <div class="form-group">
+            <label for="productName">Product Name</label>
+            <input
+              id="productName"
+              placeholder="Product Name"
+              type="text"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group">
+            <label for="Description">Description</label>
+            <textarea
+              id="desc"
+              placeholder="product description "
+              type="text"
+              rows="8"
+              cols="12"
+              class="form-control"
+            ></textarea>
+          </div>
+          <div class="form-group">
+            <label for="productPhoto">Product Photo</label>
+            <input type="hidden" name="photo" id="photo" />
+            <input id="bannerImg" type="file" class="form-control" />
+          </div>
+
+          <button class="btn customBtn Add">Add new product</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="banner-list container">
+  <div class="card">
+    <div class="card-header flex-between-center">
+      <h3>Product List</h3>
+      <button class="customBtn toggleButton">+ Add Product</button>
+    </div>
+    <div class="card-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Serial</th>
+            <th>Product Name</th>
+            <th>Description</th>
+            <th>Photo</th>
+            <th>action</th>
+          </tr>
+        </thead>
+        <tbody class="rows">
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+  document
+    .querySelector("#bannerImg")
+    .addEventListener("change", async (event) => {
+      document.querySelector(".customBtn").setAttribute("disabled", true);
+      const data = await handleImageUpload(event);
+      document.querySelector("#photo").value = data.fileLocation;
+      document.querySelector(".customBtn").removeAttribute("disabled", true);
+    });
+
+    
+
+
+  document.querySelector(".Add").addEventListener("click", (e) => {
+    e.preventDefault();
+    var productName = document.querySelector("#productName");
+    var desc = document.querySelector("#desc");
+    var photo = document.querySelector("#photo");
+
+    if (productName.value == "" || photo.value == "" || desc.value == "") {
+      document.querySelector(".msg").innerHTML =
+        '<div class="alert alert-danger">Please fill out name and photo</div>';
+    } else {
+      $.post(
+        "/backend/product/add",
+        {
+          productName: productName.value,
+          desc: desc.value,
+          photo: photo.value,
+        },
+        (res) => {
+          if (res.success == true) {
+            productName.value = "";
+            desc.value = "";
+            photo.value = "";
+            loadData();
+          } else {
+            document.querySelector(".msg").innerHTML =
+              '<div class="alert alert-danger">Something went wrong !</div>';
+          }
+        }
+      );
+    }
+  });
+  loadData();
+
+  function loadData() {
+    $.get("/backend/product/list", (products) => {
+      var rows = document.querySelector(".rows");
+      if (products.length == 0) {
+        rows.innerHTML = "";
+        rows.innerHTML += `
+            <tr>
+              <td colspan="6">
+                <h2 class="text-center">No data Found ! please add</h2>
+              </td>
+            </tr>`;
+        return;
+      }
+
+      rows.innerHTML = "";
+      var count = 0;
+      for (product of products) {
+        count++;
+        rows.innerHTML += `
+            <tr>
+              <td>${count}</td>
+              <td>${product.productName}</td>
+              <td>${product.desc}</td>
+              <td>
+                <img src="${product.photo}" width="50px" height="50px" />
+              </td>
+              <td>
+                <button onClick="del('${product.id}')" class="customBtn">Delete</button>
+              </td>
+            </tr>`;
+      }
+    });
+  }
+
+  function del(id) {
+    document.querySelector(".loader").classList.remove("hide");
+    $.post("/backend/product/del", { id }, (res) => {
+      document.querySelector(".loader").classList.add("hide");
+      if (res.success == true) {
+        loadData();
+      } else {
+        console.log("data not deleted");
+      }
+    });
+  }
+</script>
+
+<%- include('./../partials/adminFooter') %>

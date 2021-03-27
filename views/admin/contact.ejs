@@ -1,0 +1,151 @@
+<%- include('./../partials/adminHeader') %>
+
+<div class="container add-section hide">
+  <div class="jumbotron">
+    <h3>Message Title</h3>
+    <hr />
+    <div class="row">
+      <div class="col-md-8 mx-auto">
+        <h2>View Message</h2>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="banner-list container">
+  <div class="card">
+    <div class="card-header flex-between-center">
+      <h3>Incoming Message List</h3>
+    </div>
+    <div class="card-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Serial</th>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Subject</th>
+            <th>Message</th>
+            <th>status</th>
+            <th>action</th>
+          </tr>
+        </thead>
+        <tbody class="rows"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div id="myModal" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span id="closeModal" class="close">&times;</span>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-title flex-between-center">
+            <h2 id="msg-name">-</h2>
+            <h3 id="msg-phone">-</h3>
+          </div>
+          <div class="card-body" style="line-height: 1.5">
+            <h3 class="p-b-2" id="msg-subject">-</h3>
+            <h4 id="msg-message">-</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  loadData();
+  function loadData() {
+    $.get("/backend/messages/list", (messages) => {
+      var rows = document.querySelector(".rows");
+      if (messages.length == 0) {
+        rows.innerHTML = "";
+        rows.innerHTML += `
+            <tr>
+              <td colspan="6">
+                <h2 class="text-center">inbox empty !</h2>
+              </td>
+            </tr>`;
+        return;
+      }
+
+      rows.innerHTML = "";
+      var count = 0;
+      for (message of messages) {
+        count++;
+
+        var status;
+        if (message.read == false) {
+          status = `<button class="btn customBtn" style="background: #d9534f">
+                  unread
+                </button>`;
+        } else {
+          status = `<button class="btn customBtn" style="background: #00674c">
+                read
+              </button>`;
+        }
+        rows.innerHTML += `
+            <tr>
+              <td>${count}</td>
+              <td>${message.name}</td>
+              <td>${message.phone}</td>
+              <td>${message.subject}</td>
+              <td>${message.message}</td>
+              <td>
+                  ${status}  
+                </td>
+              <td>
+                <button onClick="view('${message.id}')" class="customBtn">view</button>
+                <button onClick="del('${message.id}')" class="customBtn">Delete</button>
+              </td>
+            </tr>`;
+      }
+    });
+  }
+
+  function view(id) {
+    document.querySelector(".loader").classList.remove("hide");
+    $.post("/backend/message/read", { id }, (res) => {
+      document.getElementById("msg-name").textContent = res.name;
+      document.getElementById("msg-phone").textContent = "phone: " + res.phone;
+      document.getElementById("msg-subject").textContent =
+        "subject: " + res.subject;
+      document.getElementById("msg-message").textContent =
+        "Message :" + res.message;
+      // show modal
+      document.getElementById("myModal").style.display = "block";
+      document.querySelector(".loader").classList.add("hide");
+      loadData();
+    });
+    //
+  }
+
+  function del(id) {
+    document.querySelector(".loader").classList.remove("hide");
+    $.post("/backend/message/del", { id }, (res) => {
+      document.querySelector(".loader").classList.add("hide");
+      if (res.success == true) {
+        loadData();
+      } else {
+        console.log("data not deleted");
+      }
+    });
+  }
+
+  // close modal
+  document.querySelector("#closeModal").addEventListener("click", () => {
+    document.getElementById("myModal").style.display = "none";
+  });
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function (event) {
+    if (event.target == document.getElementById("myModal")) {
+      document.getElementById("myModal").style.display = "none";
+    }
+  };
+</script>
+
+<%- include('./../partials/adminFooter') %>

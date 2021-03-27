@@ -144,9 +144,9 @@ app.post("/upload", upload.single("Img"), (req, res) => {
 
 
 
-app.get("/", (req, res) => {
-  res.send("<h1>Hello world updated 1/2/+3/+4</h1>");
-});
+// app.get("/", (req, res) => {
+//   res.send("<h1>Hello world updated 1/2/+3/+4</h1>");
+// });
 
 const PORT = process.env.PORT || 3000;
 

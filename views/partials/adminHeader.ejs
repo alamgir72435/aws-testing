@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Panel</title>
+    <!-- Bootstrap CSS -->
+
+    <!-- // toast plugin  -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+
+    <link href="../css/bootstrap.min.css" rel="stylesheet" />
+    <!-- jQuery -->
+    <script src="../js/jquery.min.js"></script>
+
+    <style>
+      /* // custom css  */
+      :root {
+        --bg: #024d91;
+        --white: #fff;
+      }
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: var(--bg);
+        width: 100%;
+        padding: 10px 10%;
+      }
+      .menu {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        list-style: none;
+      }
+      .menu .menu-item {
+        display: inline-block;
+        padding: 0px 10px;
+      }
+      .menu .menu-item a {
+        color: var(--white);
+        text-decoration: none;
+      }
+
+      .menu .menu-item a:hover {
+        color: #67839c;
+      }
+
+      .logo p {
+        font-size: 20px;
+        color: var(--white);
+      }
+      .ctx a {
+        border: none;
+        outline: none;
+        background: #d7d8d9;
+        padding: 5px 10px;
+        text-decoration: none;
+        color: var(--bg);
+        border-radius: 1px;
+      }
+      .ctx a:hover {
+        background: #67839c;
+      }
+
+      .customBtn {
+        background: var(--bg);
+        color: var(--white);
+        border: none;
+        padding: 2px 5px;
+      }
+      .hide {
+        display: none !important;
+      }
+      .show {
+        display: block !important;
+      }
+      .flex-between-center {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .w-100-p {
+        width: 100%;
+      }
+
+      .p-b-2 {
+        padding-bottom: 10px;
+      }
+
+      @keyframes ldio-ykac1zejwo {
+        0% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
+      .ldio-ykac1zejwo div {
+        left: 94px;
+        top: 48px;
+        position: absolute;
+        animation: ldio-ykac1zejwo linear 1s infinite;
+        background: #008ce3;
+        width: 12px;
+        height: 24px;
+        border-radius: 4.8px / 4.8px;
+        transform-origin: 6px 52px;
+      }
+      .ldio-ykac1zejwo div:nth-child(1) {
+        transform: rotate(0deg);
+        animation-delay: -0.9166666666666666s;
+        background: #008ce3;
+      }
+      .ldio-ykac1zejwo div:nth-child(2) {
+        transform: rotate(30deg);
+        animation-delay: -0.8333333333333334s;
+        background: #008ce3;
+      }
+      .ldio-ykac1zejwo div:nth-child(3) {
+        transform: rotate(60deg);
+        animation-delay: -0.75s;
+        background: #008ce3;
+      }
+      .ldio-ykac1zejwo div:nth-child(4) {
+        transform: rotate(90deg);
+        animation-delay: -0.6666666666666666s;
+        background: #008ce3;
+      }
+      .ldio-ykac1zejwo div:nth-child(5) {
+        transform: rotate(120deg);
+        animation-delay: -0.5833333333333334s;
+        background: #008ce3;
+      }
+      .ldio-ykac1zejwo div:nth-child(6) {
+        transform: rotate(150deg);
+        animation-delay: -0.5s;
+        background: #008ce3;
+      }
+      .ldio-ykac1zejwo div:nth-child(7) {
+        transform: rotate(180deg);
+        animation-delay: -0.4166666666666667s;
+        background: #008ce3;
+      }
+      .ldio-ykac1zejwo div:nth-child(8) {
+        transform: rotate(210deg);
+        animation-delay: -0.3333333333333333s;
+        background: #008ce3;
+      }
+      .ldio-ykac1zejwo div:nth-child(9) {
+        transform: rotate(240deg);
+        animation-delay: -0.25s;
+        background: #008ce3;
+      }
+      .ldio-ykac1zejwo div:nth-child(10) {
+        transform: rotate(270deg);
+        animation-delay: -0.16666666666666666s;
+        background: #008ce3;
+      }
+      .ldio-ykac1zejwo div:nth-child(11) {
+        transform: rotate(300deg);
+        animation-delay: -0.08333333333333333s;
+        background: #008ce3;
+      }
+      .ldio-ykac1zejwo div:nth-child(12) {
+        transform: rotate(330deg);
+        animation-delay: 0s;
+        background: #008ce3;
+      }
+      .loadingio-spinner-spinner-zfg0tf037qh {
+        width: 200px;
+        height: 200px;
+        display: inline-block;
+        overflow: hidden;
+        background: none;
+      }
+      .ldio-ykac1zejwo {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        transform: translateZ(0) scale(1);
+        backface-visibility: hidden;
+        transform-origin: 0 0; /* see note above */
+      }
+      .ldio-ykac1zejwo div {
+        box-sizing: content-box;
+      }
+
+      .loader {
+        width: 100%;
+        height: 100vh;
+        background: #96a5b3;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0.5;
+      }
+
+      /* // modal  */
+
+      /* The Modal (background) */
+      .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 100px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0, 0, 0); /* Fallback color */
+        background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+      }
+
+      /* Modal Content */
+      .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+      }
+
+      /* The Close Button */
+      .close {
+        color: #181818;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+      }
+
+      .close:hover,
+      .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .choose-file {
+        background-color: #024d91;
+        color: white;
+        padding: 0.5rem;
+        font-family: sans-serif;
+        border-radius: 0.3rem;
+        cursor: pointer;
+        margin-top: 1rem;
+      }
+
+      #actual-btn {
+        display: none;
+      }
+
+      #file-chosen {
+        margin-left: 0.3rem;
+        font-family: sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="loader">
+      <div class="loadingio-spinner-spinner-zfg0tf037qh">
+        <div class="ldio-ykac1zejwo">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+    </div>
+
+    <header>
+      <div class="logo">
+        <p>B-logic Agrovet LTD</p>
+      </div>
+      <ul class="menu">
+        <li class="menu-item"><a href="/backend">Home</a></li>
+        <li class="menu-item"><a href="/backend/banner">banner</a></li>
+        <!-- <li class="menu-item"><a href="/backend/about">About</a></li> -->
+        <li class="menu-item"><a href="/backend/statictics">Statictics</a></li>
+        <li class="menu-item"><a href="/backend/team">Team</a></li>
+
+        <li class="menu-item"><a href="/backend/product">Products</a></li>
+        <li class="menu-item"><a href="/backend/mics">Misc</a></li>
+        <li class="menu-item"><a href="/backend/socials">Socials</a></li>
+        <li class="menu-item">
+          <a href="/backend/contact">Message Request</a>
+        </li>
+      </ul>
+      <div class="ctx">
+        <a href="/backend/logout">logout</a>
+      </div>
+    </header>
+  </body>
+</html>

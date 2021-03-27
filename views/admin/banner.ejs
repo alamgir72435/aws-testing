@@ -1,0 +1,137 @@
+<%- include('./../partials/adminHeader') %>
+
+<div class="container add-section hide">
+  <div class="jumbotron">
+    <h3>Add Banner</h3>
+    <hr />
+    <div class="row">
+      <div class="col-md-12">
+        <span class="msg"></span>
+      </div>
+      <div class="col-md-8 mx-auto">
+        <form id="bannerForm" method="POST" action="/backend/banner">
+          <div class="form-group">
+            <label for="title">Title</label>
+            <input
+              id="title"
+              name="title"
+              placeholder="Title"
+              type="text"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group">
+            <label for="Description">Description</label>
+            <textarea name="editor" id="desc"></textarea>
+          </div>
+          <div class="form-group">
+            <input type="hidden" name="photo" id="photo" />
+            <input id="bannerImg" type="file" class="form-control" />
+          </div>
+          <button
+            type="button"
+            onclick="return validate()"
+            class="btn customBtn"
+          >
+            Add new Slider
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function validate() {
+    const title = document.querySelector("#title").value;
+    const photo = document.querySelector("#photo").value;
+
+    if (title == "" || photo == "") {
+      document.querySelector(".msg").innerHTML =
+        '<div class="alert alert-danger">Please fill out all the field</div>';
+      return false;
+    } else {
+      document.querySelector("#bannerForm").submit();
+    }
+  }
+
+  document
+    .querySelector("#bannerImg")
+    .addEventListener("change", async (event) => {
+      document.querySelector(".customBtn").setAttribute("disabled", true);
+      const data = await handleImageUpload(event);
+      document.querySelector("#photo").value = data.fileLocation;
+      document.querySelector(".customBtn").removeAttribute("disabled", true);
+    });
+
+  const loadData = async () => {
+    const res = await fetch("/backend/banner/all");
+    const banners = await res.json();
+    var rows = document.querySelector(".rows");
+    rows.innerHTML = "";
+    var count = 0;
+    for (banner of banners) {
+      count++;
+      rows.innerHTML += ` 
+          <tr>
+            <td>${count}</td>
+            <td>${banner.title}</td>
+            <td>
+              ${banner.desc}
+            </td>
+            <td>
+              <img
+                width="100px"
+                height="100px"
+                src="${banner.photo}"
+                alt=""
+              />
+            </td>
+            <td>
+              <button onClick="del('${banner.id}')" class="customBtn">Delete</button>
+            </td>
+          </tr>`;
+    }
+  };
+
+  // call load data
+  loadData();
+
+  // delete
+  function del(id) {
+    document.querySelector(".loader").classList.remove("hide");
+    $.post("/backend/banner/del", { id }, (res) => {
+      document.querySelector(".loader").classList.add("hide");
+      if (res.success == true) {
+        loadData();
+      } else {
+        console.log("data not deleted");
+      }
+    });
+  }
+</script>
+
+<div class="banner-list container">
+  <div class="card">
+    <div class="card-header flex-between-center">
+      <h3>Banner List</h3>
+      <button class="customBtn toggleButton">+ Add Banner</button>
+    </div>
+    <div class="card-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Serial</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Image</th>
+            <th>action</th>
+          </tr>
+        </thead>
+        <tbody class="rows"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<%- include('./../partials/adminFooter') %>

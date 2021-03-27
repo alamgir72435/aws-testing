@@ -1,0 +1,186 @@
+<%- include('./../partials/adminHeader') %>
+<style>
+  .custom-input {
+    margin-bottom: 10px;
+  }
+</style>
+<div class="container">
+  <div class="jumbotron">
+    <div class="row">
+      <div class="col-md-12">
+        <span class="msg"></span>
+      </div>
+      <div class="col-md-7">
+        <div class="card">
+          <div class="card-body">
+            <h3 class="title">Misc Setup</h3>
+            <form>
+              <div class="form-group">
+                <label for="CompanyName">Company Name</label>
+                <input
+                  id="companyName"
+                  class="form-control"
+                  placeholder="Company Name"
+                />
+              </div>
+              <div class="form-group">
+                <label for="footerInfo">Footer Information</label>
+                <input
+                  id="footerInfo"
+                  class="form-control"
+                  placeholder="Footer Information"
+                />
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone</label>
+                <input
+                  id="phone"
+                  class="form-control"
+                  placeholder="01XXXXXXXXX"
+                />
+              </div>
+              <div class="form-group">
+                <label for="mail">Mail</label>
+                <input
+                  id="mail"
+                  class="form-control"
+                  placeholder="example@mail.com"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="footerInfo">Address</label>
+                <input
+                  class="form-control custom-input"
+                  id="address1"
+                  placeholder="Address line 1"
+                />
+                <input
+                  class="form-control custom-input"
+                  placeholder="Address line 2"
+                  id="address2"
+                />
+                <input
+                  class="form-control custom-input"
+                  placeholder="Address line 3"
+                  id="address3"
+                />
+                <input
+                  class="form-control custom-input"
+                  placeholder="Address line 4"
+                  id="address4"
+                />
+              </div>
+              <div class="form-group">
+                <input type="submit" id="submit" class="btn btn-primary" />
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <h2>Upload Logo</h2>
+        <div class="row">
+          <div class="col-md-12">
+            <!-- actual upload which is hidden -->
+            <input type="file" id="actual-btn" hidden />
+            <!-- our custom upload button -->
+            <label class="choose-file" for="actual-btn">Choose File</label>
+            <!-- name of file chosen -->
+            <span id="file-chosen">choose png logo</span>
+          </div>
+          <hr />
+          <div class="col-md-12">
+            <hr />
+            <!-- // image  -->
+            <img
+              style="width: 100%; height: auto"
+              class="logo-img rounded img-fluid"
+              src=""
+              alt=""
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // logo change
+  document
+    .querySelector("#actual-btn")
+    .addEventListener("change", async (event) => {
+      const data = await handleImageUpload(event);
+      console.log(data.fileLocation);
+      $.post("/admin/update/logo", { logo: data.fileLocation }, (res) => {
+        // load data again
+        if (res.success == true) {
+          document
+            .querySelector(".logo-img")
+            .setAttribute("src", data.fileLocation);
+        }
+      });
+    });
+
+  document.getElementById("submit").addEventListener("click", (e) => {
+    e.preventDefault();
+    let companyName = document.getElementById("companyName");
+    let footerInfo = document.getElementById("footerInfo");
+    let phone = document.getElementById("phone");
+    let mail = document.getElementById("mail");
+    let address1 = document.getElementById("address1");
+    let address2 = document.getElementById("address2");
+    let address3 = document.getElementById("address3");
+    let address4 = document.getElementById("address4");
+
+    let info = {
+      companyName: companyName.value,
+      footerInfo: footerInfo.value,
+      phone: phone.value,
+      mail: mail.value,
+      address1: address1.value,
+      address2: address2.value,
+      address3: address3.value,
+      address4: address4.value,
+    };
+
+    $.post("/admin/update/info", info, (res) => {
+      if (res.success == false) {
+        document.querySelector(".msg").innerHTML =
+          '<div class="alert alert-danger">Something went wrong !</div>';
+      } else {
+        document.querySelector(".msg").innerHTML =
+          '<div class="alert alert-success">Data saved !</div>';
+      }
+
+      setTimeout(() => {
+        document.querySelector(".alert").style.display = "none";
+      }, 3000);
+    });
+  });
+
+  loadData();
+  function loadData() {
+    $.get("/backend/utils", (utils) => {
+      var rows = document.querySelector(".rows");
+      if (utils.length > 0) {
+        var logo = utils[1];
+        var util = utils[0];
+
+        document.querySelector(".logo-img").setAttribute("src", logo.logo);
+
+        document.getElementById("companyName").value = util.companyName;
+        document.getElementById("footerInfo").value = util.footerInfo;
+        document.getElementById("phone").value = util.phone;
+        document.getElementById("mail").value = util.mail;
+        document.getElementById("address1").value = util.address1;
+        document.getElementById("address2").value = util.address2;
+        document.getElementById("address3").value = util.address3;
+        document.getElementById("address4").value = util.address4;
+      }
+    });
+  }
+</script>
+
+<%- include('./../partials/adminFooter') %>

@@ -1,0 +1,145 @@
+<%- include('./../partials/adminHeader') %>
+
+<div class="container add-section hide">
+  <div class="jumbotron">
+    <h3>Add Statictics</h3>
+    <hr />
+    <div class="row">
+      <div class="col-md-12">
+        <span class="msg"></span>
+      </div>
+      <div class="col-md-8 mx-auto">
+        <form>
+          <div class="form-group">
+            <label for="Statictics Name">Statictics Name</label>
+            <input
+              id="StaticticsName"
+              placeholder="Statictics Name"
+              type="text"
+              class="form-control"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="Count">Count</label>
+            <input id="count" placeholder="0" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="icon">Font awsome Icon Class</label>
+            <input id="icon" placeholder="fa fa-users" class="form-control" />
+          </div>
+          <button class="btn customBtn StaticticsAdd">
+            Add new Statictics
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="banner-list container">
+  <div class="card">
+    <div class="card-header flex-between-center">
+      <h3>Sttictics List</h3>
+      <button class="customBtn toggleButton">+ Add Statictics</button>
+    </div>
+    <div class="card-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Serial</th>
+            <th>Statictics Name</th>
+            <th>Count</th>
+            <th>Icon</th>
+            <th>action</th>
+          </tr>
+        </thead>
+        <tbody class="rows"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.querySelector(".StaticticsAdd").addEventListener("click", (e) => {
+    e.preventDefault();
+    var StaticticsName = document.querySelector("#StaticticsName");
+    var count = document.querySelector("#count");
+    var icon = document.querySelector("#icon");
+    if (StaticticsName.value == "" || count.value == "") {
+      document.querySelector(".msg").innerHTML =
+        '<div class="alert alert-danger">Please fill out all the field</div>';
+    } else {
+      $.post(
+        "/backend/statictics/add",
+        {
+          StaticticsName: StaticticsName.value,
+          count: count.value,
+          icon: icon.value,
+        },
+        (res) => {
+          if (res.success == true) {
+            StaticticsName.value = "";
+            count.value = "";
+            icon.value = "";
+            loadData();
+          } else {
+            document.querySelector(".msg").innerHTML =
+              '<div class="alert alert-danger">Something went wrong !</div>';
+          }
+        }
+      );
+    }
+  });
+  loadData();
+  function loadData() {
+    $.get("/backend/statictics/list", (statictics) => {
+      var rows = document.querySelector(".rows");
+      if (statictics.length == 0) {
+        rows.innerHTML = "";
+        rows.innerHTML += `
+            <tr>
+              <td colspan="4">
+                <h2 class="text-center">No data Found ! please add</h2>
+              </td>
+            </tr>`;
+        return;
+      }
+
+      rows.innerHTML = "";
+      var count = 0;
+      for (statictic of statictics) {
+        count++;
+        console.log(statictic);
+        rows.innerHTML += `
+            <tr>
+              <td>${count}</td>
+              <td>${statictic.StaticticsName}</td>
+              <td>
+                ${statictic.count}
+              </td>
+              <td>
+                <i class="${statictic.icon}"></i>
+              </td>
+              <td>
+                <button onClick="del('${statictic.id}')" class="customBtn">Delete</button>
+              </td>
+            </tr>`;
+      }
+    });
+  }
+
+  function del(id) {
+    document.querySelector(".loader").classList.remove("hide");
+    $.post("/backend/statictics/del", { id }, (res) => {
+      document.querySelector(".loader").classList.add("hide");
+      if (res.success == true) {
+        loadData();
+      } else {
+        console.log("data not deleted");
+      }
+    });
+  }
+</script>
+
+<%- include('./../partials/adminFooter') %>
