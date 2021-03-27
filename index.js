@@ -53,10 +53,44 @@ initializePassport(
   (id) => users.find((user) => user.id === id)
 );
 
+//==
 
+app.use(flash());
+app.use(
+  session({
+    secret: "abcd",
+    resave: false,
+    saveUninitialized: false,
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(methodOverride("_method"));
+
+app.post(
+  "/auth",
+  checkNotAuthenticated,
+  passport.authenticate("local", {
+    successRedirect: "/backend/home",
+    failureRedirect: "/backend",
+    failureFlash: true,
+  })
+);
+
+app.post("/test", (req, res) => {
+  console.log(req.body);
+  // res.redirect("/admin");
+});
+
+// authentication part end
+
+app.use("/backend", require("./routes/admin"));
+app.use("/", require("./routes"));
+
+//==
 
 app.get("/", (req, res) => {
-  res.send("<h1>Hello world updated 1</h1>");
+  res.send("<h1>Hello world updated 1/2</h1>");
 });
 
 const PORT = process.env.PORT || 3000;
